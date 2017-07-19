@@ -53,5 +53,11 @@ class UserTest < Minitest::Test
     assert_equal 2, josh.jokes.count
   end
 
+  def test_learning_routine
+    josh = User.new("Josh")
+    josh.learn_routine('./jokes.csv')
+    assert_equal 100, josh.jokes.count
+  end
+
 
 end

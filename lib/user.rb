@@ -24,6 +24,14 @@ class User
   end
 
   def learn_routine(filename)
-    file = File.(filename, "r")
-    file
+    file = File.open(filename)
+    txt = file.read()
+    file.close
+    all_joke = txt.split("\n")
+    all_joke.each do |joke|
+      joke_ary = joke.split(",")
+      j = Joke.new({id: joke_ary[0], question: joke_ary[1], answer: joke_ary[2]})
+      self.learn(j)
+    end
+  end
 end
