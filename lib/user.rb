@@ -1,4 +1,5 @@
 require './lib/joke'
+require 'pry'
 
 class User
   attr_reader :name,
@@ -28,6 +29,9 @@ class User
     txt = file.read()
     file.close
     all_joke = txt.split("\n")
+      if all_joke[0].split(',')[0] == "id"
+        all_joke.shift
+      end
     all_joke.each do |joke|
       joke_ary = joke.split(",")
       j = Joke.new({id: joke_ary[0], question: joke_ary[1], answer: joke_ary[2]})
